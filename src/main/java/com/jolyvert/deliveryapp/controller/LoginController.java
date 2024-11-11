@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class LoginController {
@@ -21,6 +22,11 @@ public class LoginController {
     @PostMapping("/login")
     public ResponseEntity<CurrentLoginSession> login(@RequestBody LoginDto loginDto) throws LoginException {
         return ResponseEntity.ok(loginService.login(loginDto));
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<String> logout(@RequestParam(required = false) String key) throws LoginException {
+        return ResponseEntity.ok(loginService.logout(key));
     }
 
 }

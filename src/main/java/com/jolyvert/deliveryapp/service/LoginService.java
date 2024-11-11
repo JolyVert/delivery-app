@@ -49,4 +49,17 @@ public class LoginService {
             throw new LoginException("Wrong password");
         }
     }
+
+
+    public String logout(String key) throws LoginException {
+
+        CurrentLoginSession currentLoginSession = sessionRepository.findByUuid(key);
+
+        if(currentLoginSession == null) {
+            throw new LoginException("User not logged in");
+        }
+        sessionRepository.delete(currentLoginSession);
+
+        return "Logged out";
+    }
 }
