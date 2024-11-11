@@ -1,4 +1,4 @@
-package com.jolyvert.deliveryapp.customer;
+package com.jolyvert.deliveryapp.model;
 
 import jakarta.persistence.*;
 

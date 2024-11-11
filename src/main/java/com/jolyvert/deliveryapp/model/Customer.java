@@ -1,4 +1,4 @@
-package com.jolyvert.deliveryapp.customer;
+package com.jolyvert.deliveryapp.model;
 
 import jakarta.persistence.*;
 
@@ -10,7 +10,7 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int customerId;
 
-    @Column(length = 20)
+    @Column(length = 30)
     private String email;
 
     @Column(length = 20)

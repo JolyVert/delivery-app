@@ -1,8 +1,8 @@
-package com.jolyvert.deliveryapp.customer;
+package com.jolyvert.deliveryapp.dto;
 
-import jakarta.persistence.*;
+import com.jolyvert.deliveryapp.model.Address;
 
-public class RegisterCustomerDto {
+public class RegisterDto {
 
     private String email;
 
