@@ -16,16 +16,16 @@ public class Restaurant {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    int restaurantId;
+    private int restaurantId;
 
     @Column(length = 30)
-    String restaurantName;
+    private String restaurantName;
 
     @Column(length = 15)
-    String telephoneNumber;
+    private String telephoneNumber;
 
     @OneToOne(cascade = CascadeType.ALL)
-    Address address;
+    private Address address;
 
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Item> itemList = new ArrayList<Item>();

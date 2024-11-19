@@ -2,14 +2,12 @@ package com.jolyvert.deliveryapp.controller;
 
 
 import com.jolyvert.deliveryapp.service.CustomerService;
-import com.jolyvert.deliveryapp.dto.RegisterDto;
+import com.jolyvert.deliveryapp.dto.RegisterCustomerDto;
 import com.jolyvert.deliveryapp.model.Customer;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,9 +26,14 @@ public class CustomerController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<Customer> addCustomer(@RequestBody RegisterDto registerDto) {
-        Customer customer = customerService.createCustomer(registerDto);
+    public ResponseEntity<Customer> addCustomer(@RequestBody RegisterCustomerDto registerCustomerDto) {
+        Customer customer = customerService.createCustomer(registerCustomerDto);
 
         return ResponseEntity.ok(customer);
+    }
+
+    @DeleteMapping("/deleteCustomer/{customerId}")
+    public ResponseEntity<String> deleteCustomer(@PathVariable Long customerId) {
+        return ResponseEntity.ok(customerService.deleteCustomer(customerId));
     }
 }

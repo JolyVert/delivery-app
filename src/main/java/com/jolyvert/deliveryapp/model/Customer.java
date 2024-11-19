@@ -17,6 +17,9 @@ public class Customer {
     @Column(length = 30)
     private String email;
 
+    @Column(length = 15)
+    private String telephoneNumber;
+
     @Column(length = 20)
     private String password;
 
