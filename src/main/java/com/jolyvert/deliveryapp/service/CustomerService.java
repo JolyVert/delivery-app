@@ -4,6 +4,7 @@ package com.jolyvert.deliveryapp.service;
 import com.jolyvert.deliveryapp.dto.RegisterCustomerDto;
 import com.jolyvert.deliveryapp.model.Customer;
 import com.jolyvert.deliveryapp.repository.CustomerRepository;
+import com.jolyvert.deliveryapp.repository.FoodCartRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,8 +13,11 @@ import java.util.List;
 public class CustomerService {
     private final CustomerRepository customerRepository;
 
-    public CustomerService(CustomerRepository customerRepository) {
+    private final FoodCartService foodCartService;
+
+    public CustomerService(CustomerRepository customerRepository, FoodCartService foodCartService) {
         this.customerRepository = customerRepository;
+        this.foodCartService = foodCartService;
     }
 
     public Customer createCustomer(RegisterCustomerDto registerCustomerDto) {
@@ -23,6 +27,8 @@ public class CustomerService {
         customer.setEmail(registerCustomerDto.getEmail());
         customer.setPassword(registerCustomerDto.getPassword());
         customer.setAddress(registerCustomerDto.getAddress());
+
+        foodCartService.createFoodCart(customer);
 
         return customerRepository.save(customer);
     }
@@ -35,8 +41,9 @@ public class CustomerService {
     public String deleteCustomer(Long id) {
         customerRepository.delete(customerRepository.findById(id).orElseThrow(() -> new RuntimeException("Customer not found")));
         return "Customer deleted";
+
     }
 
-
-
 }
+
+

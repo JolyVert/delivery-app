@@ -1,6 +1,8 @@
 package com.jolyvert.deliveryapp.controller;
 
+import com.jolyvert.deliveryapp.dto.AddItemDto;
 import com.jolyvert.deliveryapp.dto.RegisterRestaurantDto;
+import com.jolyvert.deliveryapp.model.Item;
 import com.jolyvert.deliveryapp.model.Restaurant;
 import com.jolyvert.deliveryapp.service.RestaurantService;
 import org.springframework.http.ResponseEntity;
@@ -35,5 +37,11 @@ public class RestaurantController {
     public ResponseEntity<String> deleteRestaurant(@PathVariable Long restaurantId) {
         return ResponseEntity.ok(restaurantService.deleteRestaurant(restaurantId));
     }
+
+    @PostMapping("/restaurant/addItem")
+    public ResponseEntity<List<Item>> addItem(@RequestBody AddItemDto addItemDto) {
+        return ResponseEntity.ok(restaurantService.addItem(addItemDto.getId(), addItemDto.getItem()));
+    }
+
 
 }
