@@ -14,16 +14,16 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int customerId;
 
-    @Column(length = 30)
+    @Column(length = 30, unique = true, nullable = false)
     private String email;
 
-    @Column(length = 15)
+    @Column(length = 15, unique = true, nullable = false)
     private String telephoneNumber;
 
-    @Column(length = 20)
+    @Column(length = 20, nullable = false)
     private String password;
 
-    @Column(length = 20)
+    @Column(length = 20, nullable = false)
     private String name;
 
     @OneToOne(cascade = CascadeType.ALL)

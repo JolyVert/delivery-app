@@ -15,9 +15,9 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int itemId;
 
-    @Column(length = 50)
+    @Column(length = 50, nullable = false)
     private String itemName;
 
-    @Column(length = 200)
+    @Column(length = 200, nullable = false)
     private String itemDescription;
 }

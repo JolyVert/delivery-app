@@ -21,8 +21,10 @@ public class CurrentLoginSession {
     @Column(unique =  true)
     private Integer userId;
 
+    @Column
     private String uuid;
 
+    @Column
     private LocalDateTime localDateTime;
 
 
