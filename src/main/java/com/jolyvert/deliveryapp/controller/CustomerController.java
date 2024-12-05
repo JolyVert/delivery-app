@@ -1,6 +1,8 @@
 package com.jolyvert.deliveryapp.controller;
 
 
+import com.jolyvert.deliveryapp.exception.CustomerException;
+import com.jolyvert.deliveryapp.exception.FoodCartException;
 import com.jolyvert.deliveryapp.service.CustomerService;
 import com.jolyvert.deliveryapp.dto.RegisterCustomerDto;
 import com.jolyvert.deliveryapp.model.Customer;
@@ -26,14 +28,14 @@ public class CustomerController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<Customer> addCustomer(@RequestBody RegisterCustomerDto registerCustomerDto) {
+    public ResponseEntity<Customer> addCustomer(@RequestBody RegisterCustomerDto registerCustomerDto) throws CustomerException {
         Customer customer = customerService.createCustomer(registerCustomerDto);
 
         return ResponseEntity.ok(customer);
     }
 
     @DeleteMapping("/deleteCustomer/{customerId}")
-    public ResponseEntity<String> deleteCustomer(@PathVariable Long customerId) {
+    public ResponseEntity<String> deleteCustomer(@PathVariable Long customerId) throws CustomerException {
         return ResponseEntity.ok(customerService.deleteCustomer(customerId));
     }
 }

@@ -1,5 +1,6 @@
 package com.jolyvert.deliveryapp.service;
 
+import com.jolyvert.deliveryapp.exception.FoodCartException;
 import com.jolyvert.deliveryapp.model.Customer;
 import com.jolyvert.deliveryapp.model.FoodCart;
 import com.jolyvert.deliveryapp.model.Item;
@@ -21,13 +22,18 @@ public class FoodCartService {
     }
 
     public FoodCart createFoodCart(Customer customer) {
+
         FoodCart foodCart = new FoodCart();
         foodCart.setCustomer(customer);
         foodCart.setItemList(new ArrayList<Item>());
         return foodCartRepository.save(foodCart);
     }
 
-    public FoodCart addItem(int customerId, int itemId) {
+    public FoodCart addItem(int customerId, int itemId) throws FoodCartException {
+
+        if(!itemRepository.existsById((long)itemId)) {
+            throw new FoodCartException("Item does not exist");
+        }
 
         FoodCart cart = foodCartRepository.findByCustomerCustomerId(customerId);
         cart.getItemList().add(itemRepository.findById((long)itemId).orElseThrow());

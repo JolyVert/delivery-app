@@ -22,4 +22,34 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<MyErrorDetails>(myErrorDetails, HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(CustomerException.class)
+    public ResponseEntity<MyErrorDetails> customerExceptionHandler(CustomerException customerException, WebRequest webRequest){
+        MyErrorDetails myErrorDetails = new MyErrorDetails();
+        myErrorDetails.setTimeStamp(LocalDateTime.now());
+        myErrorDetails.setMessage(customerException.getMessage());
+        myErrorDetails.setDetails(webRequest.getDescription(false));
+
+        return new ResponseEntity<MyErrorDetails>(myErrorDetails, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(FoodCartException.class)
+    public ResponseEntity<MyErrorDetails> foodCartExceptionHandler(FoodCartException foodCartException, WebRequest webRequest){
+        MyErrorDetails myErrorDetails = new MyErrorDetails();
+        myErrorDetails.setTimeStamp(LocalDateTime.now());
+        myErrorDetails.setMessage(foodCartException.getMessage());
+        myErrorDetails.setDetails(webRequest.getDescription(false));
+
+        return new ResponseEntity<MyErrorDetails>(myErrorDetails, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(RestaurantException.class)
+    public ResponseEntity<MyErrorDetails> restaurantExceptionHandler(RestaurantException restaurantException, WebRequest webRequest){
+        MyErrorDetails myErrorDetails = new MyErrorDetails();
+        myErrorDetails.setTimeStamp(LocalDateTime.now());
+        myErrorDetails.setMessage(restaurantException.getMessage());
+        myErrorDetails.setDetails(webRequest.getDescription(false));
+
+        return new ResponseEntity<MyErrorDetails>(myErrorDetails, HttpStatus.BAD_REQUEST);
+    }
+
 }

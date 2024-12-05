@@ -10,6 +10,8 @@ public class RegisterCustomerDto {
 
     private String email;
 
+    private String telephoneNumber;
+
     private String password;
 
     private String name;

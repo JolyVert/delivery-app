@@ -1,6 +1,7 @@
 package com.jolyvert.deliveryapp.controller;
 
 import com.jolyvert.deliveryapp.dto.AddItemDto;
+import com.jolyvert.deliveryapp.exception.FoodCartException;
 import com.jolyvert.deliveryapp.model.Customer;
 import com.jolyvert.deliveryapp.model.FoodCart;
 import com.jolyvert.deliveryapp.model.Item;
@@ -20,7 +21,7 @@ public class FoodCartController {
     }
 
     @PostMapping("/addItemToCart")
-    public ResponseEntity<FoodCart> addItemToCart(@RequestBody AddItemDto addItemDto) {
+    public ResponseEntity<FoodCart> addItemToCart(@RequestBody AddItemDto addItemDto) throws FoodCartException {
         return ResponseEntity.ok(foodCartService.addItem(addItemDto.getId(), addItemDto.getItem().getItemId()));
     }
 }
