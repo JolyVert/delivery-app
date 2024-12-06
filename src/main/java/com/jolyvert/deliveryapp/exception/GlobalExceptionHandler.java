@@ -52,4 +52,14 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<MyErrorDetails>(myErrorDetails, HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(ItemException.class)
+    public ResponseEntity<MyErrorDetails> itemExceptionHandler(ItemException itemException, WebRequest webRequest){
+        MyErrorDetails myErrorDetails = new MyErrorDetails();
+        myErrorDetails.setTimeStamp(LocalDateTime.now());
+        myErrorDetails.setMessage(itemException.getMessage());
+        myErrorDetails.setDetails(webRequest.getDescription(false));
+
+        return new ResponseEntity<MyErrorDetails>(myErrorDetails, HttpStatus.BAD_REQUEST);
+    }
+
 }

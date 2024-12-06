@@ -5,6 +5,7 @@ import com.jolyvert.deliveryapp.dto.RegisterRestaurantDto;
 import com.jolyvert.deliveryapp.exception.RestaurantException;
 import com.jolyvert.deliveryapp.model.Item;
 import com.jolyvert.deliveryapp.model.Restaurant;
+import com.jolyvert.deliveryapp.service.ItemService;
 import com.jolyvert.deliveryapp.service.RestaurantService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -18,8 +19,11 @@ public class RestaurantController {
 
     private final RestaurantService restaurantService;
 
-    public RestaurantController(RestaurantService restaurantService) {
+    private final ItemService itemService;
+
+    public RestaurantController(RestaurantService restaurantService, ItemService itemService) {
         this.restaurantService = restaurantService;
+        this.itemService = itemService;
     }
 
     @PostMapping("/addRestaurant")
@@ -41,7 +45,7 @@ public class RestaurantController {
 
     @PostMapping("/restaurant/addItem")
     public ResponseEntity<List<Item>> addItem(@RequestBody AddItemDto addItemDto) throws RestaurantException {
-        return ResponseEntity.ok(restaurantService.addItem(addItemDto.getId(), addItemDto.getItem()));
+        return ResponseEntity.ok(itemService.addItem(addItemDto.getId(), addItemDto.getItem()));
     }
 
 
