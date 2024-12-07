@@ -26,11 +26,11 @@ public class ItemService {
         this.foodCartRepository = foodCartRepository;
     }
 
-    public List<Item> addItem(int restaurantId, Item item) throws RestaurantException {
+    public List<Item> addItem(String restaurantName, Item item) throws RestaurantException {
 
 
-
-        Restaurant restaurant = restaurantRepository.findById((long)restaurantId).orElseThrow(() -> new RestaurantException("Restaurant Not Found"));
+        String newName = restaurantName.replaceAll("(?<!^)(?=[A-Z])", " ");
+        Restaurant restaurant = restaurantRepository.findByRestaurantName(newName).orElseThrow(() -> new RestaurantException("Restaurant Not Found"));
         restaurant.getItemList().add(item);
         restaurantRepository.save(restaurant);
         return restaurant.getItemList();
@@ -55,6 +55,24 @@ public class ItemService {
         itemRepository.delete(item);
 
         return "Item deleted";
+    }
+
+    public Item updateItem(int itemId, Item item) throws ItemException {
+        Item updatedItem = itemRepository.findById((long)itemId).orElseThrow(() -> new ItemException("Item Not Found"));
+        updatedItem.setItemName(item.getItemName());
+        updatedItem.setItemDescription(item.getItemDescription());
+        return itemRepository.save(updatedItem);
+    }
+
+    public List<Item> getItemList(String restaurantName) throws RestaurantException {
+
+        String newName = restaurantName.replaceAll("(?<!^)(?=[A-Z])", " ");
+        Restaurant restaurant = restaurantRepository.findByRestaurantName(newName).orElseThrow(() -> new RestaurantException("Restaurant Not Found"));
+        return restaurant.getItemList();
+    }
+
+    public Item getItem(int itemId) throws ItemException {
+        return itemRepository.findById((long)itemId).orElseThrow(() -> new ItemException("Item Not Found"));
     }
 
 }

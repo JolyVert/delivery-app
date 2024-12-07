@@ -43,10 +43,7 @@ public class RestaurantController {
         return ResponseEntity.ok(restaurantService.deleteRestaurant(restaurantId));
     }
 
-    @PostMapping("/restaurant/addItem")
-    public ResponseEntity<List<Item>> addItem(@RequestBody AddItemDto addItemDto) throws RestaurantException {
-        return ResponseEntity.ok(itemService.addItem(addItemDto.getId(), addItemDto.getItem()));
-    }
+
 
 
 }
