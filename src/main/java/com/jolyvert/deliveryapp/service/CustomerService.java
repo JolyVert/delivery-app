@@ -46,6 +46,16 @@ public class CustomerService {
         return customerRepository.findAll();
     }
 
+    public Customer updateCustomer(int itemId, Customer customer) throws CustomerException {
+        Customer newCustomer = customerRepository.findById((long)itemId).orElseThrow (() -> new CustomerException("Customer not found"));
+        newCustomer.setName(customer.getName());
+        newCustomer.setTelephoneNumber(customer.getTelephoneNumber());
+        newCustomer.setEmail(customer.getEmail());
+        newCustomer.setPassword(customer.getPassword());
+        newCustomer.setAddress(customer.getAddress());
+        return customerRepository.save(newCustomer);
+    }
+
     public String deleteCustomer(Long id) throws CustomerException {
 
         if(!customerRepository.existsById(id)) {

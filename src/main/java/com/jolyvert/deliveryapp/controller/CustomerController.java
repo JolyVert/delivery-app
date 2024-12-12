@@ -38,4 +38,9 @@ public class CustomerController {
     public ResponseEntity<String> deleteCustomer(@PathVariable Long customerId) throws CustomerException {
         return ResponseEntity.ok(customerService.deleteCustomer(customerId));
     }
+
+    @PutMapping("/updateCustomer/{customerId}")
+    public ResponseEntity<Customer> updateCustomer(@PathVariable int customerId, @RequestBody Customer customer) throws CustomerException {
+        return ResponseEntity.ok(customerService.updateCustomer(customerId, customer));
+    }
 }
