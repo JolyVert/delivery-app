@@ -20,4 +20,8 @@ public class Item {
 
     @Column(length = 200, nullable = false)
     private String itemDescription;
+
+    //@Column(nullable = false)
+    @OneToOne(cascade = CascadeType.ALL)
+    private Category category;
 }
