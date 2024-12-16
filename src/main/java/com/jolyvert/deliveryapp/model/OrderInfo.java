@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @Entity
@@ -14,8 +16,12 @@ public class OrderInfo {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int orderId;
 
-    //@OneToOne(cascade = CascadeType.ALL)
-    //private FoodCart foodCart;
+    @OneToOne(cascade = CascadeType.ALL)
+    private FoodCart foodCart;
+
+    private LocalDateTime orderDate;
+
+    boolean isReady;
 
 
 
