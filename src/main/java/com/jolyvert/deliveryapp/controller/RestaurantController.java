@@ -1,7 +1,6 @@
 package com.jolyvert.deliveryapp.controller;
 
 import com.jolyvert.deliveryapp.dto.AddItemDto;
-import com.jolyvert.deliveryapp.dto.RegisterRestaurantDto;
 import com.jolyvert.deliveryapp.exception.RestaurantException;
 import com.jolyvert.deliveryapp.model.Item;
 import com.jolyvert.deliveryapp.model.Restaurant;
@@ -26,11 +25,7 @@ public class RestaurantController {
         this.itemService = itemService;
     }
 
-    @PostMapping("/addRestaurant")
-    public ResponseEntity<Restaurant> addRestaurant(@RequestBody RegisterRestaurantDto registerRestaurantDto) throws RestaurantException {
-        Restaurant restaurant = restaurantService.createRestaurant(registerRestaurantDto);
-        return ResponseEntity.ok(restaurant);
-    }
+
 
     @GetMapping("/restaurants")
     public ResponseEntity<List<Restaurant>> getRestaurants(Model model) {

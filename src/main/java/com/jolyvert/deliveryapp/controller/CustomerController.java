@@ -2,9 +2,8 @@ package com.jolyvert.deliveryapp.controller;
 
 
 import com.jolyvert.deliveryapp.exception.CustomerException;
-import com.jolyvert.deliveryapp.exception.FoodCartException;
 import com.jolyvert.deliveryapp.service.CustomerService;
-import com.jolyvert.deliveryapp.dto.RegisterCustomerDto;
+import com.jolyvert.deliveryapp.dto.RegisterDto;
 import com.jolyvert.deliveryapp.model.Customer;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -25,13 +24,6 @@ public class CustomerController {
     @GetMapping(value = "/customers")
     public ResponseEntity<List<Customer>> getCustomers(Model model) {
         return ResponseEntity.ok(customerService.findAllCustomers());
-    }
-
-    @PostMapping("/register")
-    public ResponseEntity<Customer> addCustomer(@RequestBody RegisterCustomerDto registerCustomerDto) throws CustomerException {
-        Customer customer = customerService.createCustomer(registerCustomerDto);
-
-        return ResponseEntity.ok(customer);
     }
 
     @DeleteMapping("/deleteCustomer/{customerId}")

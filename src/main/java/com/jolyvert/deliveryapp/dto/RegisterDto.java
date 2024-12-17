@@ -1,12 +1,13 @@
 package com.jolyvert.deliveryapp.dto;
 
 import com.jolyvert.deliveryapp.model.Address;
+import com.jolyvert.deliveryapp.model.enums.Role;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class RegisterCustomerDto {
+public class RegisterDto {
 
     private String email;
 
@@ -17,5 +18,7 @@ public class RegisterCustomerDto {
     private String name;
 
     private Address address;
+
+    private Role role;
 
 }

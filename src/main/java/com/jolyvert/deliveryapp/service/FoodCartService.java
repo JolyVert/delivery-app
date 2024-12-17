@@ -35,7 +35,7 @@ public class FoodCartService {
             throw new FoodCartException("Item does not exist");
         }
 
-        FoodCart cart = foodCartRepository.findByCustomerCustomerId(customerId);
+        FoodCart cart = foodCartRepository.findByCustomerId(customerId);
         cart.getItemList().add(itemRepository.findById((long)itemId).orElseThrow());
         return foodCartRepository.save(cart);
     }

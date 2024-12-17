@@ -1,8 +1,7 @@
 package com.jolyvert.deliveryapp.service;
 
 
-import com.jolyvert.deliveryapp.dto.RegisterCustomerDto;
-import com.jolyvert.deliveryapp.dto.RegisterRestaurantDto;
+
 import com.jolyvert.deliveryapp.exception.RestaurantException;
 import com.jolyvert.deliveryapp.model.Item;
 import com.jolyvert.deliveryapp.model.Restaurant;
@@ -23,19 +22,6 @@ public class RestaurantService {
         this.itemRepository = itemRepository;
     }
 
-    public Restaurant createRestaurant(RegisterRestaurantDto registerRestaurantDto) throws RestaurantException {
-
-        if(restaurantRepository.existsByTelephoneNumber(registerRestaurantDto.getTelephoneNumber())) {
-            throw new RestaurantException("Restaurant already exists");
-        }
-
-        Restaurant restaurant = new Restaurant();
-        restaurant.setRestaurantName(registerRestaurantDto.getRestaurantName());
-        restaurant.setTelephoneNumber(registerRestaurantDto.getTelephoneNumber());
-        restaurant.setAddress(registerRestaurantDto.getAddress());
-        return restaurantRepository.save(restaurant);
-    }
-
     public List<Restaurant> getAllRestaurants() {
         return restaurantRepository.findAll();
     }
@@ -47,7 +33,6 @@ public class RestaurantService {
     }
 
     public List<Item> addItem(int restaurantId, Item item) throws RestaurantException {
-
 
 
         Restaurant restaurant = restaurantRepository.findById((long)restaurantId).orElseThrow(() -> new RestaurantException("Restaurant Not Found"));

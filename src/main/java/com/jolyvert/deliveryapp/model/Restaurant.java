@@ -1,6 +1,7 @@
 package com.jolyvert.deliveryapp.model;
 
 
+import com.jolyvert.deliveryapp.model.enums.Role;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,23 +12,18 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name = "restaurant")
-public class Restaurant {
+@DiscriminatorValue("RESTAURANT")
+public class Restaurant extends User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int restaurantId;
-
-    @Column(length = 30, unique = true, nullable = false)
+    @Column(length = 30, nullable = false)
     private String restaurantName;
 
-    @Column(length = 15, unique = true, nullable = false)
-    private String telephoneNumber;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    private Address address;
-
     @ManyToMany(cascade = CascadeType.ALL)
-    private List<Item> itemList = new ArrayList<>();
+    private List<Item> itemList;
+
+    public Restaurant() {
+        super();
+        this.setRole(Role.RESTAURANT);
+    }
 
 }

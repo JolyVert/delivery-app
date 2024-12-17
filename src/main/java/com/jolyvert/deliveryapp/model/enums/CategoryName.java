@@ -1,4 +1,4 @@
-package com.jolyvert.deliveryapp.model;
+package com.jolyvert.deliveryapp.model.enums;
 
 public enum CategoryName {
 
