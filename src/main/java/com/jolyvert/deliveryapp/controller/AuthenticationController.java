@@ -1,39 +1,58 @@
 package com.jolyvert.deliveryapp.controller;
 
-import com.jolyvert.deliveryapp.dto.LoginDto;
-import com.jolyvert.deliveryapp.dto.RegisterDto;
+
+import com.jolyvert.deliveryapp.dto.AuthenticationResponseDto;
+import com.jolyvert.deliveryapp.dto.LoginRequestDto;
+import com.jolyvert.deliveryapp.dto.RegistrationRequestDto;
 import com.jolyvert.deliveryapp.exception.LoginException;
-import com.jolyvert.deliveryapp.model.CurrentLoginSession;
+
 import com.jolyvert.deliveryapp.model.User;
+
 import com.jolyvert.deliveryapp.service.AuthenticationService;
+import com.jolyvert.deliveryapp.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 public class AuthenticationController {
 
     private final AuthenticationService authenticationService;
 
-    public AuthenticationController(AuthenticationService authenticationService) {
-        this.authenticationService = authenticationService;
-    }
+    private final UserService userService;
 
-    @PostMapping("/login")
-    public ResponseEntity<CurrentLoginSession> login(@RequestBody LoginDto loginDto) throws LoginException {
-        return ResponseEntity.ok(authenticationService.login(loginDto));
+    public AuthenticationController(AuthenticationService authenticationService, UserService userService) {
+        this.authenticationService = authenticationService;
+        this.userService = userService;
     }
 
     @PostMapping("/register")
-    public ResponseEntity<User> register(@RequestBody RegisterDto registerDto) throws LoginException {
-        return ResponseEntity.ok(authenticationService.register(registerDto));
+    public ResponseEntity<String> register(@RequestBody RegistrationRequestDto registerDto) throws LoginException {
+
+
+        authenticationService.register(registerDto);
+
+        return ResponseEntity.ok("Registered");
     }
 
-    @PostMapping("/logout")
-    public ResponseEntity<String> logout(@RequestParam(required = false) String key) throws LoginException {
-        return ResponseEntity.ok(authenticationService.logout(key));
+    @PostMapping("/login")
+    public ResponseEntity<AuthenticationResponseDto> authenticate(
+            @RequestBody LoginRequestDto loginDto) {
+
+        return ResponseEntity.ok(authenticationService.authenticate(loginDto));
+    }
+
+    @PostMapping("/refresh_token")
+    public ResponseEntity<AuthenticationResponseDto> refreshToken(
+            HttpServletRequest request,
+            HttpServletResponse response) {
+
+        return authenticationService.refreshToken(request, response);
     }
 
 }

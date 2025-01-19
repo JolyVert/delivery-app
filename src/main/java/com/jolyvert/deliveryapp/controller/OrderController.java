@@ -4,6 +4,7 @@ import com.jolyvert.deliveryapp.exception.FoodCartException;
 import com.jolyvert.deliveryapp.exception.OrderInfoException;
 import com.jolyvert.deliveryapp.model.OrderInfo;
 import com.jolyvert.deliveryapp.service.OrderService;
+import com.jolyvert.deliveryapp.service.OrderServiceImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class OrderController {
 
-    private OrderService orderService;
+    private final OrderService orderService;
 
     public OrderController(OrderService orderService) {
         this.orderService = orderService;

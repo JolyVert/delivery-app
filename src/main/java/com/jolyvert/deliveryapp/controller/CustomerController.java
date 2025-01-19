@@ -3,7 +3,7 @@ package com.jolyvert.deliveryapp.controller;
 
 import com.jolyvert.deliveryapp.exception.CustomerException;
 import com.jolyvert.deliveryapp.service.CustomerService;
-import com.jolyvert.deliveryapp.dto.RegisterDto;
+import com.jolyvert.deliveryapp.service.CustomerServiceImpl;
 import com.jolyvert.deliveryapp.model.Customer;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;

@@ -12,25 +12,7 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
 
-  keycloak:
-    container_name: Keycloak
-    image: quay.io/keycloak/keycloak:latest
-    ports:
-      - 9090:8080
-    environment:
-      KEYCLOAK_ADMIN: admin
-      KEYCLOAK_ADMIN_PASSWORD: admin
-    networks:
-      - keycloak-network
-    command:
-      - "start-dev"
 
-networks:
-    keycloak-network:
-      driver: bridge
 
 volumes:
   mysql_data:
-
-  keycloak:
-    driver: local

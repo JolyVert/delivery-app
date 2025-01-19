@@ -1,18 +1,19 @@
 package com.jolyvert.deliveryapp.controller;
 
-import com.jolyvert.deliveryapp.dto.AddItemDto;
 import com.jolyvert.deliveryapp.exception.ItemException;
 import com.jolyvert.deliveryapp.exception.RestaurantException;
 import com.jolyvert.deliveryapp.model.Item;
 import com.jolyvert.deliveryapp.service.ItemService;
+import com.jolyvert.deliveryapp.service.ItemServiceImpl;
 import com.jolyvert.deliveryapp.service.RestaurantService;
+import com.jolyvert.deliveryapp.service.RestaurantServiceImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping("/{restaurantName}")
+@RequestMapping("/restaurant/{restaurantName}")
 @Controller
 public class ItemController {
 

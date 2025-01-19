@@ -2,10 +2,9 @@ package com.jolyvert.deliveryapp.controller;
 
 import com.jolyvert.deliveryapp.dto.AddItemDto;
 import com.jolyvert.deliveryapp.exception.FoodCartException;
-import com.jolyvert.deliveryapp.model.Customer;
 import com.jolyvert.deliveryapp.model.FoodCart;
-import com.jolyvert.deliveryapp.model.Item;
 import com.jolyvert.deliveryapp.service.FoodCartService;
+import com.jolyvert.deliveryapp.service.FoodCartServiceImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;

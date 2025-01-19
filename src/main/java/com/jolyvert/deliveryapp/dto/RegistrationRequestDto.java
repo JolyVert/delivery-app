@@ -2,12 +2,10 @@ package com.jolyvert.deliveryapp.dto;
 
 import com.jolyvert.deliveryapp.model.Address;
 import com.jolyvert.deliveryapp.model.enums.Role;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
-public class RegisterDto {
+@Data
+public class RegistrationRequestDto {
 
     private String email;
 
@@ -20,5 +18,4 @@ public class RegisterDto {
     private Address address;
 
     private Role role;
-
 }
