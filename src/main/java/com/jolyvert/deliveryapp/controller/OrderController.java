@@ -6,6 +6,7 @@ import com.jolyvert.deliveryapp.model.OrderInfo;
 import com.jolyvert.deliveryapp.service.OrderService;
 import com.jolyvert.deliveryapp.service.OrderServiceImpl;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +20,7 @@ public class OrderController {
         this.orderService = orderService;
     }
 
+    @PreAuthorize("hasRole('CUSTOMER')")
     @PostMapping("/createOrder/{cartId}")
     public ResponseEntity<OrderInfo> createOrder(@PathVariable int cartId) throws OrderInfoException, FoodCartException {
         return ResponseEntity.ok(orderService.createOrder(cartId));

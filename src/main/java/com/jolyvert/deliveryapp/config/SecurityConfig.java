@@ -50,9 +50,9 @@ public class SecurityConfig {
         http.csrf(AbstractHttpConfigurer::disable);
 
         http.authorizeHttpRequests(auth -> {
-                    auth.requestMatchers("/login/**","/register/**", "/css/**", "/refresh_token/**", "/")
+                    auth.requestMatchers("/login/**","/register/**", "/refresh_token/**", "/")
                             .permitAll();
-                    auth.requestMatchers("/admin/**").hasAuthority("ADMIN");
+                    auth.requestMatchers("/restaurant/**").hasAuthority("RESTAURANT");
                     auth.anyRequest().authenticated();
                 })
                 .userDetailsService(userService)
