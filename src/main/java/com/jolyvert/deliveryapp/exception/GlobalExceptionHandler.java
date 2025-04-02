@@ -10,7 +10,7 @@ import org.springframework.web.context.request.WebRequest;
 import java.time.LocalDateTime;
 
 @ControllerAdvice
-public class GlobalExceptionHandler {
+public class  GlobalExceptionHandler {
 
     @ExceptionHandler(LoginException.class)
     public ResponseEntity<MyErrorDetails> loginExceptionHandler(LoginException loginException, WebRequest webRequest){

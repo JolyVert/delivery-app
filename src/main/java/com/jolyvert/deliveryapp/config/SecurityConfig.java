@@ -52,7 +52,7 @@ public class SecurityConfig {
         http.authorizeHttpRequests(auth -> {
                     auth.requestMatchers("/login/**","/register/**", "/refresh_token/**", "/")
                             .permitAll();
-                    auth.requestMatchers("/restaurant/**").hasAuthority("RESTAURANT");
+                    auth.requestMatchers("/restaurant/**").hasAnyAuthority("RESTAURANT", "ADMIN");
                     auth.anyRequest().authenticated();
                 })
                 .userDetailsService(userService)

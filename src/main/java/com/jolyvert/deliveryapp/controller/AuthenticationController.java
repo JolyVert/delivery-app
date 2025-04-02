@@ -5,15 +5,11 @@ import com.jolyvert.deliveryapp.dto.AuthenticationResponseDto;
 import com.jolyvert.deliveryapp.dto.LoginRequestDto;
 import com.jolyvert.deliveryapp.dto.RegistrationRequestDto;
 import com.jolyvert.deliveryapp.exception.LoginException;
-
-import com.jolyvert.deliveryapp.model.User;
-
 import com.jolyvert.deliveryapp.service.AuthenticationService;
 import com.jolyvert.deliveryapp.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;

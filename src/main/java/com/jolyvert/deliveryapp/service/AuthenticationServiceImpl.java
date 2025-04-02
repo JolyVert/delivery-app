@@ -13,6 +13,7 @@ import com.jolyvert.deliveryapp.repository.TokenRepository;
 import com.jolyvert.deliveryapp.repository.UserRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.transaction.Transactional;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -53,7 +54,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         this.tokenRepository = tokenRepository;
         this.foodCartService = foodCartService;
     }
-
+    @Transactional
     public void register(RegistrationRequestDto registerDto) throws LoginException {
 
         if(userRepository.existsByEmail(registerDto.getEmail())) {

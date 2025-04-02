@@ -34,12 +34,12 @@ public class AdminSeeder implements ApplicationListener<ContextRefreshedEvent> {
     private void createAdministrator() {
 
         User user = new User();
-        user.setEmail("antoha@gmail.com");
+        user.setEmail("admin@gmail.com");
         user.setTelephoneNumber("510 177 424");
         user.setPassword(passwordEncoder.encode("12345"));
         user.setRole(Role.ADMIN);
 
-        Optional<User> optionalUser = userRepository.findByEmail("antoha@gmail.com");
+        Optional<User> optionalUser = userRepository.findByEmail("admin@gmail.com");
 
         if (optionalUser.isPresent()) {
             return;

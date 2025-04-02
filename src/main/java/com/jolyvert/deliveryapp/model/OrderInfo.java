@@ -21,7 +21,9 @@ public class OrderInfo {
 
     private LocalDateTime orderDate;
 
-    boolean isReady;
+    boolean isAccepted = false;
+
+    boolean isReady = false;
 
 
 

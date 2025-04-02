@@ -1,5 +1,6 @@
 package com.jolyvert.deliveryapp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.jolyvert.deliveryapp.model.enums.Role;
 import jakarta.persistence.*;
 import lombok.*;
@@ -25,6 +26,7 @@ public class User implements UserDetails {
     @Column(length = 30, unique = true, nullable = false)
     private String email;
 
+    @JsonIgnore
     @Column(nullable = false)
     private String password;
 
@@ -37,6 +39,7 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     private List<Token> tokens;
 
